@@ -9,12 +9,23 @@
  * 
  */
 
+#define LED 2
+
 void setup()
 {
-    // code...
+    pinMode(LED, OUTPUT);    // Set LED as output
+    digitalWrite(LED, HIGH); // Turn LED off
+    Serial.begin(9600);      // Enable serial connection at baudrate 9600
+    Serial.println();        // After boot there are some chars, so let's go to new line before test
 }
 
 void loop()
 {
-    // code...
+    // Let's display on monitor everything, what it gets!
+    if (Serial.available() > 0)
+    {
+        digitalWrite(LED, LOW);            // On data recieve, turn LED on
+        Serial.print(Serial.readString()); // Print recieved string
+        digitalWrite(LED, HIGH);           // Turn LED off
+    }
 }
