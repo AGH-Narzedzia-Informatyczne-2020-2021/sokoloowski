@@ -1,7 +1,7 @@
 /**
- * @file test.ino
+ * @file main.ino
  * @author Piotr Sokołowski (psokolowski@student.agh.edu.pl)
- * @brief Test file for BeeBoard XM 0.3
+ * @brief Main file for BeeBoard XM 0.3
  * @version 0.1
  * @date 2020-11-03
  * 
