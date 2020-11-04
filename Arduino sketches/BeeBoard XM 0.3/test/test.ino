@@ -17,7 +17,7 @@ void setup()
     pinMode(LED, OUTPUT);    // Set LED as output
     digitalWrite(LED, HIGH); // Turn LED off
     Wire.begin();            // Enable I²C interface
-    Serial.begin(9600);      // Enable serial interface at baudrate 9600
+    Serial.begin(115200);    // Enable serial interface at baudrate 115200
     Serial.println();        // After boot there are some chars, so let's go to new line before test
     i2c_scan();              // Submit scan
     // Post-setup message
@@ -43,7 +43,7 @@ void loop()
     Serial.print("Voltage: ");
     Serial.print(readVoltage(ADC, MAX_VOLTAGE, MAX_ADC_VALUE));
     Serial.println("V");
-    
+
     Serial.println(); // Empty line
     delay(1000);
 }
