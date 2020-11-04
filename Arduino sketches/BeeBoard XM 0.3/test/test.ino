@@ -10,8 +10,7 @@
  */
 
 #include <Wire.h>
-#define ADC 0
-#define LED 2
+#include "./defines.hpp"
 
 void setup()
 {
@@ -42,7 +41,7 @@ void loop()
 
     // Read voltage
     Serial.print("Voltage: ");
-    Serial.print(readVoltage(ADC, 12.65f, 1024));
+    Serial.print(readVoltage(ADC, MAX_VOLTAGE, MAX_ADC_VALUE));
     Serial.println("V");
     
     Serial.println(); // Empty line
