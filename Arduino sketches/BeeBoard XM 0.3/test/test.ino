@@ -27,38 +27,25 @@ void setup()
 
 void loop()
 {
-    if (readVoltage(ADC, MAX_VOLTAGE, MAX_ADC_VALUE) <= 9.0f)
+    // Let's display on monitor everything, what it gets!
+    if (Serial.available() > 0)
     {
-        // critical voltage on batteries!
-        Serial.println("Shutting off all systems, going to deepsleep");
-        ESP.deepSleep(0); // Going into sleep mode until the system is restarted
+        digitalWrite(LED, LOW);            // On data recieve, turn LED on
+        Serial.print(Serial.readString()); // Print recieved string
+        digitalWrite(LED, HIGH);           // Turn LED off
     }
-    else
-    {
-        if (readVoltage(ADC, MAX_VOLTAGE, MAX_ADC_VALUE) <= 9.5f)
-        {
-            // warning
-            Serial.println("Battery low!");
-        }
 
-        // Let's display on monitor everything, what it gets!
-        if (Serial.available() > 0)
-        {
-            digitalWrite(LED, LOW);            // On data recieve, turn LED on
-            Serial.print(Serial.readString()); // Print recieved string
-            digitalWrite(LED, HIGH);           // Turn LED off
-        }
+    // Read ADC value
+    Serial.print("ADC value: ");
+    Serial.println(readADC(ADC));
 
-        // Read ADC value
-        Serial.print("ADC value: ");
-        Serial.println(readADC(ADC));
+    // Read voltage
+    Serial.print("Voltage: ");
+    Serial.print(readVoltage(ADC, MAX_VOLTAGE, MAX_ADC_VALUE));
+    Serial.println("V");
 
-        // Read voltage
-        Serial.print("Voltage: ");
-        Serial.print(readVoltage(ADC, MAX_VOLTAGE, MAX_ADC_VALUE));
-        Serial.println("V");
+    checkBattery(); // Check battery voltage
 
-        Serial.println(); // Empty line
-        delay(1000);
-    }
+    Serial.println(); // Empty line
+    delay(1000);      // Wait for one second
 }
