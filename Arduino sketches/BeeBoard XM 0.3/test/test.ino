@@ -28,7 +28,6 @@ void setup()
 
 void loop()
 {
-    int analogValue = 0;
     // Let's display on monitor everything, what it gets!
     if (Serial.available() > 0)
     {
@@ -36,8 +35,16 @@ void loop()
         Serial.print(Serial.readString()); // Print recieved string
         digitalWrite(LED, HIGH);           // Turn LED off
     }
-    analogValue = analogRead(ADC);
-    Serial.print("Wartosc ADC: ");
-    Serial.println(analogValue);
+
+    // Read ADC value
+    Serial.print("ADC value: ");
+    Serial.println(readADC(ADC));
+
+    // Read voltage
+    Serial.print("Voltage: ");
+    Serial.print(readVoltage(ADC, 12.65f, 1024));
+    Serial.println("V");
+    
+    Serial.println(); // Empty line
     delay(1000);
 }
