@@ -10,6 +10,7 @@
  */
 
 #include <Wire.h>
+#define ADC 0
 #define LED 2
 
 void setup()
@@ -20,13 +21,14 @@ void setup()
     Serial.begin(9600);      // Enable serial interface at baudrate 9600
     Serial.println();        // After boot there are some chars, so let's go to new line before test
     i2c_scan();              // Submit scan
-    // Post-scan message
+    // Post-setup message
     Serial.println("Now you can test out serial interface.");
     Serial.println("Send something via serial monitor in Arduino IDE.");
 }
 
 void loop()
 {
+    int analogValue = 0;
     // Let's display on monitor everything, what it gets!
     if (Serial.available() > 0)
     {
@@ -34,4 +36,8 @@ void loop()
         Serial.print(Serial.readString()); // Print recieved string
         digitalWrite(LED, HIGH);           // Turn LED off
     }
+    analogValue = analogRead(ADC);
+    Serial.print("Wartosc ADC: ");
+    Serial.println(analogValue);
+    delay(1000);
 }
