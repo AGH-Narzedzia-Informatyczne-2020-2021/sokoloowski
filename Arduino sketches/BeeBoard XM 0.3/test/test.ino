@@ -9,14 +9,20 @@
  * 
  */
 
+#include <Wire.h>
 #define LED 2
 
 void setup()
 {
     pinMode(LED, OUTPUT);    // Set LED as output
     digitalWrite(LED, HIGH); // Turn LED off
-    Serial.begin(9600);      // Enable serial connection at baudrate 9600
+    Wire.begin();            // Enable I²C interface
+    Serial.begin(9600);      // Enable serial interface at baudrate 9600
     Serial.println();        // After boot there are some chars, so let's go to new line before test
+    i2c_scan();              // Submit scan
+    // Post-scan message
+    Serial.println("Now you can test out serial interface.");
+    Serial.println("Send something via serial monitor in Arduino IDE.");
 }
 
 void loop()
