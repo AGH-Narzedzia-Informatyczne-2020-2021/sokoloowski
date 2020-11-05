@@ -9,6 +9,11 @@
  * 
  */
 
+/**
+ * @brief Enabling ESP-NOW protocol with any important stuff
+ * 
+ * @param mac MAC address to set up
+ */
 void enableEspNow(uint8_t *mac)
 {
     WiFi.mode(WIFI_OFF);
@@ -27,6 +32,13 @@ void enableEspNow(uint8_t *mac)
     Serial.println("ESP-NOW configured successfully");
 }
 
+/**
+ * @brief This function is triggerred on data recieve event
+ * 
+ * @param mac 
+ * @param incomingData 
+ * @param len 
+ */
 void OnDataRecv(uint8_t *mac, uint8_t *incomingData, uint8_t len)
 {
     // code...
