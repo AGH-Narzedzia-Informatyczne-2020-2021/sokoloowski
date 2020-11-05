@@ -18,6 +18,7 @@ uint8_t broadcastAddress[] = {0xAA, 0xBB, 0xCC, 0xDD, 0xEE, 0xFF};
 int adcValue,
     messageCode;
 float voltage;
+logstruct beeboard;
 
 void setup()
 {
