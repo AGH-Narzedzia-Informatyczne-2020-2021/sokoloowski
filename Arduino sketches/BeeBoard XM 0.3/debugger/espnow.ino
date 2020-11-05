@@ -21,7 +21,7 @@ void enableEspNow(uint8_t *mac)
     Serial.println("Wi-fi enabled successfully");
     wifi_set_macaddr(STATION_IF, mac);
     Serial.println("MAC address changed successfully");
-    if (!esp_now_init())
+    if (esp_now_init() != 0)
     {
         Serial.println("Cannot initialize ESP-NOW");
         return;
