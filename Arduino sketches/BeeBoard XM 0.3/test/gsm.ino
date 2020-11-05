@@ -17,7 +17,7 @@
  */
 bool isGsmAvailable()
 {
-    int gsmAddr = 118;
+    int gsmAddr = 104;
     Wire.beginTransmission(gsmAddr);
     if (Wire.endTransmission() == 0)
     {
