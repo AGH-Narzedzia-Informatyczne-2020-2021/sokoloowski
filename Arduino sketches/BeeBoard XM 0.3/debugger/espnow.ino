@@ -45,4 +45,5 @@ void OnDataRecv(uint8_t *mac, uint8_t *incomingData, uint8_t len)
     adcValue = beeboard.adcValue;
     voltage = beeboard.voltage;
     messageCode = beeboard.messageCode;
+    gsmAvailable = beeboard.isGsmConnected;
 }
