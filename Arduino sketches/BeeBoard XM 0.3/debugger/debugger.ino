@@ -9,6 +9,12 @@
  * 
  */
 
+#include <ESP8266WiFi.h>
+#include <espnow.h>
+
+// Set up broadcast address to AA:BB:CC:DD:EE:FF
+uint8_t broadcastAddress[] = {0xAA, 0xBB, 0xCC, 0xDD, 0xEE, 0xFF};
+
 void setup()
 {
     // code...
