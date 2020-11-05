@@ -20,9 +20,29 @@ int adcValue,
 float voltage;
 logstruct beeboard;
 
+void OnDataRecv(uint8_t *mac, uint8_t *incomingData, uint8_t len)
+{
+    // code...
+}
+
 void setup()
 {
     Serial.begin(115200);
+    Serial.println();
+    WiFi.mode(WIFI_OFF);
+    WiFi.mode(WIFI_STA);
+    Serial.println("Wi-fi enabled successfully");
+    wifi_set_macaddr(STATION_IF, broadcastAddress);
+    Serial.println("MAC address changed successfully");
+    if (!esp_now_init())
+    {
+        Serial.println("Cannot initialize ESP-NOW");
+        return;
+    }
+    Serial.println("ESP-NOW initialized successfully");
+    esp_now_set_self_role(ESP_NOW_ROLE_SLAVE);
+    esp_now_register_recv_cb(OnDataRecv);
+    Serial.println("ESP-NOW configured successfully");
     Serial.println();
 }
 
