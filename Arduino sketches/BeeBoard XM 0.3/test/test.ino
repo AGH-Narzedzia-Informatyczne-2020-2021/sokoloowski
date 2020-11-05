@@ -10,7 +10,10 @@
  */
 
 #include <Wire.h>
-#include "./defines.hpp"
+#include "defines.hpp"
+#include "logstruct.hpp"
+
+logstruct beeboard;
 
 void setup()
 {
