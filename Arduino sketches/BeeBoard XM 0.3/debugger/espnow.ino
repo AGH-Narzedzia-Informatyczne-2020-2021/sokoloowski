@@ -41,5 +41,8 @@ void enableEspNow(uint8_t *mac)
  */
 void OnDataRecv(uint8_t *mac, uint8_t *incomingData, uint8_t len)
 {
-    // code...
+    memcpy(&beeboard, incomingData, sizeof(beeboard));
+    adcValue = beeboard.adcValue;
+    voltage = beeboard.voltage;
+    messageCode = beeboard.messageCode;
 }
