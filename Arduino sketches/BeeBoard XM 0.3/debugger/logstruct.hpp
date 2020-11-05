@@ -14,4 +14,5 @@ struct logstruct
     int adcValue;
     float voltage;
     int messageCode;
+    bool isGsmConnected;
 };

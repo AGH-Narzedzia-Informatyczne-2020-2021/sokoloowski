@@ -18,6 +18,7 @@ uint8_t broadcastAddress[] = {0xAA, 0xBB, 0xCC, 0xDD, 0xEE, 0xFF};
 int adcValue = 0,
     messageCode = 0;
 float voltage = 0.0f;
+bool gsmAvailable = false;
 logstruct beeboard;
 
 void setup()
@@ -35,6 +36,9 @@ void loop()
 
     Serial.print("Voltage:   ");
     Serial.println(voltage);
+
+    if (gsmAvailable)
+        Serial.println("GSM connected!");
 
     switch (messageCode)
     {

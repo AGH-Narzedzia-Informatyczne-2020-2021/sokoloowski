@@ -39,6 +39,7 @@ void loop()
     beeboard.adcValue = readADC(ADC);
     beeboard.voltage = readVoltage(ADC, MAX_VOLTAGE, MAX_ADC_VALUE);
     beeboard.messageCode = checkBattery();
+    beeboard.isGsmConnected = isGsmAvailable();
     esp_now_send(0, (uint8_t *)&beeboard, sizeof(beeboard));
     delay(1000);      // Wait for one second
 }
