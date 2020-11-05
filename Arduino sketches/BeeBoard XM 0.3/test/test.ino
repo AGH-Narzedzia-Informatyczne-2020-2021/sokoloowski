@@ -26,7 +26,7 @@ void setup()
     digitalWrite(LED, HIGH); // Turn LED off
     Wire.begin();            // Enable I²C interface
     Serial.begin(115200);    // Enable serial interface at baudrate 115200
-    enableEspNow(BroadcastAddress);
+    enableEspNow(broadcastAddress);
     // Serial.println();        // After boot there are some chars, so let's go to new line before test
     // i2c_scan();              // Submit scan
     // Post-setup message
