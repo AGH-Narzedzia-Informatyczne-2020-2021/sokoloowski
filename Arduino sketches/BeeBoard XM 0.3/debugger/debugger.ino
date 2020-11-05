@@ -15,9 +15,9 @@
 
 // Set up broadcast address to AA:BB:CC:DD:EE:FF
 uint8_t broadcastAddress[] = {0xAA, 0xBB, 0xCC, 0xDD, 0xEE, 0xFF};
-int adcValue,
-    messageCode;
-float voltage;
+int adcValue = 0,
+    messageCode = 0;
+float voltage = 0.0f;
 logstruct beeboard;
 
 void setup()
@@ -51,4 +51,5 @@ void loop()
     }
 
     Serial.println();
+    delay(1000);
 }
