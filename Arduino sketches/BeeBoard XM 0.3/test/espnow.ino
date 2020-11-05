@@ -43,7 +43,13 @@ void OnDataSent(uint8_t *mac_addr, uint8_t sendStatus)
     Serial.print("Last Packet Send Status: ");
 
     if (sendStatus == 0)
+    {
         Serial.println("Delivery success");
+
+        // Check for critical voltage only after information is delivered!
+        if (checkBattery() == 2)
+            ESP.deepSleep(0);
+    }
     else
         Serial.println("Delivery fail");
 }
