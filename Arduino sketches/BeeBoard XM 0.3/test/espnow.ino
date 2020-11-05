@@ -18,18 +18,18 @@ void enableEspNow(uint8_t *mac)
 {
     WiFi.mode(WIFI_OFF);
     WiFi.mode(WIFI_STA);
-    Serial.println("Wi-fi enabled successfully");
+    // Serial.println("Wi-fi enabled successfully");
     WiFi.setOutputPower(20);
     if (esp_now_init() != 0)
     {
-        Serial.println("Error initializing ESP-NOW");
+        // Serial.println("Error initializing ESP-NOW");
         return;
     }
-    Serial.println("ESP-NOW initialized successfully");
+    // Serial.println("ESP-NOW initialized successfully");
     esp_now_set_self_role(ESP_NOW_ROLE_CONTROLLER);
     esp_now_register_send_cb(OnDataSent);
     esp_now_add_peer(broadcastAddress, ESP_NOW_ROLE_SLAVE, 1, NULL, 0);
-    Serial.println("ESP-NOW configured successfully");
+    // Serial.println("ESP-NOW configured successfully");
 }
 
 /**
@@ -40,16 +40,16 @@ void enableEspNow(uint8_t *mac)
  */
 void OnDataSent(uint8_t *mac_addr, uint8_t sendStatus)
 {
-    Serial.print("Last Packet Send Status: ");
+    // Serial.print("Last Packet Send Status: ");
 
     if (sendStatus == 0)
     {
-        Serial.println("Delivery success");
+        // Serial.println("Delivery success");
 
         // Check for critical voltage only after information is delivered!
         if (checkBattery() == 2)
             ESP.deepSleep(0);
     }
     else
-        Serial.println("Delivery fail");
+        // Serial.println("Delivery fail");
 }
