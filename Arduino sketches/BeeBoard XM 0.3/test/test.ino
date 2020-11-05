@@ -9,6 +9,8 @@
  * 
  */
 
+#include <ESP8266WiFi.h>
+#include <espnow.h>
 #include <Wire.h>
 #include "defines.hpp"
 #include "logstruct.hpp"
