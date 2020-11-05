@@ -15,13 +15,37 @@
 
 // Set up broadcast address to AA:BB:CC:DD:EE:FF
 uint8_t broadcastAddress[] = {0xAA, 0xBB, 0xCC, 0xDD, 0xEE, 0xFF};
+int adcValue,
+    messageCode;
+float voltage;
 
 void setup()
 {
-    // code...
+    Serial.begin(115200);
+    Serial.println();
 }
 
 void loop()
 {
-    // code...
+    Serial.print("ADC value: ");
+    Serial.println(adcValue);
+
+    Serial.print("Voltage:   ");
+    Serial.println(voltage);
+
+    switch (messageCode)
+    {
+    case 1:
+        Serial.println("Battery low!");
+        break;
+
+    case 2:
+        Serial.println("Shutting off all systems, going to deepsleep");
+        break;
+
+    default:
+        break;
+    }
+
+    Serial.println();
 }
