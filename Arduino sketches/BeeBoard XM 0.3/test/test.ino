@@ -43,7 +43,21 @@ void loop()
     Serial.print(readVoltage(ADC, MAX_VOLTAGE, MAX_ADC_VALUE));
     Serial.println("V");
 
-    checkBattery(); // Check battery voltage
+    // Check battery voltage
+    switch (checkBattery())
+    {
+    case 1:
+        Serial.println("Battery low!");
+        break;
+
+    case 2:
+        Serial.println("Shutting off all systems, going to deepsleep");
+        // ESP.deepSleep(0);
+        break;
+
+    default:
+        break;
+    }
 
     Serial.println(); // Empty line
     delay(1000);      // Wait for one second
