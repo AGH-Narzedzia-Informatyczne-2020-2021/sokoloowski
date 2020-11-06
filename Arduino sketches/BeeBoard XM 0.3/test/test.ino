@@ -10,7 +10,10 @@
  */
 
 #include <Wire.h>
+#include <Adafruit_BMP280.h> // https://github.com/adafruit/Adafruit_BMP280_Library/archive/master.zip
 #include "defines.hpp"
+
+Adafruit_BMP280 bmp;
 
 void setup()
 {
@@ -20,6 +23,12 @@ void setup()
     Serial.begin(115200);    // Enable serial interface at baudrate 115200
     Serial.println();        // After boot there are some chars, so let's go to new line before test
     i2c_scan();              // Submit scan
+
+    // Set up BMP280 sensor
+    bmp.setSampling(Adafruit_BMP280::MODE_NORMAL);
+    bmp.begin();
+    Serial.println("BMP280 sensor enabled");    
+
     // Post-setup message
     Serial.println("Now you can test out serial interface.");
     Serial.println("Send something via serial monitor in Arduino IDE.");
@@ -35,13 +44,21 @@ void loop()
     }
 
     // Read ADC value
-    Serial.print("ADC value: ");
+    Serial.print("ADC value:   ");
     Serial.println(readADC(ADC));
 
     // Read voltage
-    Serial.print("Voltage: ");
+    Serial.print("Voltage:     ");
     Serial.print(readVoltage(ADC, MAX_VOLTAGE, MAX_ADC_VALUE));
     Serial.println("V");
+
+    // Read BMP280 sensor data
+    Serial.print("Pressure:    ");
+    Serial.print(bmp.readPressure() / 100);
+    Serial.println(" hPa");
+    Serial.print("Temperature: ");
+    Serial.print(bmp.readTemperature());
+    Serial.println("*C");
 
     // Check battery voltage
     switch (checkBattery())
