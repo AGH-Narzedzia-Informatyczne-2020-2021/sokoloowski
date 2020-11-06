@@ -28,7 +28,7 @@ void setup()
     Serial.begin(115200);    // Enable serial interface at baudrate 115200
     Serial.println();        // After boot there are some chars, so let's go to new line before test
     i2c_scan();              // Submit scan
-    Post-setup message
+    // Post-setup message
     Serial.println("Now you can test out serial interface.");
     Serial.println("Send something via serial monitor in Arduino IDE.");
 }
