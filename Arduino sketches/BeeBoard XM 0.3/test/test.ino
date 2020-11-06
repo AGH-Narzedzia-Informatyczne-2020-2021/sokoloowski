@@ -26,20 +26,33 @@ void setup()
     digitalWrite(LED, HIGH); // Turn LED off
     Wire.begin();            // Enable I²C interface
     Serial.begin(115200);    // Enable serial interface at baudrate 115200
-    enableEspNow(broadcastAddress);
-    // Serial.println();        // After boot there are some chars, so let's go to new line before test
-    // i2c_scan();              // Submit scan
-    // Post-setup message
-    // Serial.println("Now you can test out serial interface.");
-    // Serial.println("Send something via serial monitor in Arduino IDE.");
+    Serial.println();        // After boot there are some chars, so let's go to new line before test
+    i2c_scan();              // Submit scan
+    Post-setup message
+    Serial.println("Now you can test out serial interface.");
+    Serial.println("Send something via serial monitor in Arduino IDE.");
 }
 
 void loop()
 {
-    beeboard.adcValue = readADC(ADC);
-    beeboard.voltage = readVoltage(ADC, MAX_VOLTAGE, MAX_ADC_VALUE);
-    beeboard.messageCode = checkBattery();
-    beeboard.isGsmConnected = isGsmAvailable();
-    esp_now_send(0, (uint8_t *)&beeboard, sizeof(beeboard));
+    if (Serial.available() > 0)
+    {
+        digitalWrite(LED, LOW);            // On data recieve, turn LED on
+        Serial.print(Serial.readString()); // Print recieved string
+        digitalWrite(LED, HIGH);           // Turn LED off
+    }
+
+    // Read ADC value
+    Serial.print("ADC value: ");
+    Serial.println(readADC(ADC));
+
+    // Read voltage
+    Serial.print("Voltage: ");
+    Serial.print(readVoltage(ADC, MAX_VOLTAGE, MAX_ADC_VALUE));
+    Serial.println("V");
+
+    checkBattery(); // Check battery voltage
+
+    Serial.println(); // Empty line
     delay(1000);      // Wait for one second
 }
