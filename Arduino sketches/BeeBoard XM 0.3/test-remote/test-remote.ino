@@ -9,7 +9,20 @@
  * 
  */
 
-void remoteSetup()
+#include <ESP8266WiFi.h>
+#include <espnow.h>
+#include <Wire.h>
+#include <Adafruit_BMP280.h> // https://github.com/adafruit/Adafruit_BMP280_Library/archive/master.zip
+#include "defines.hpp"
+#include "logstruct.hpp"
+
+// Set up broadcast address to AA:BB:CC:DD:EE:FF
+uint8_t broadcastAddress[] = {0xAA, 0xBB, 0xCC, 0xDD, 0xEE, 0xFF};
+
+logstruct beeboard;
+Adafruit_BMP280 bmp;
+
+void setup()
 {
     pinMode(LED, OUTPUT);           // Set LED as output
     digitalWrite(LED, HIGH);        // Turn LED off
@@ -18,7 +31,7 @@ void remoteSetup()
     enableEspNow(broadcastAddress); // Enable ESP-NOW communication
 }
 
-void remoteLoop()
+void loop()
 {
     beeboard.adcValue = readADC(ADC);                                // Read ADC value
     beeboard.voltage = readVoltage(ADC, MAX_VOLTAGE, MAX_ADC_VALUE); // Read voltage
