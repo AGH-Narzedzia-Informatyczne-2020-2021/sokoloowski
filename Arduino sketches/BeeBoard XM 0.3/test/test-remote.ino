@@ -1,5 +1,5 @@
 /**
- * @file test.ino
+ * @file test-remote.ino
  * @author Piotr Sokołowski (psokolowski@student.agh.edu.pl)
  * @brief Test file for BeeBoard XM 0.3
  * @version 0.1
@@ -9,18 +9,7 @@
  * 
  */
 
-#include <ESP8266WiFi.h>
-#include <espnow.h>
-#include <Wire.h>
-#include "defines.hpp"
-#include "logstruct.hpp"
-
-// Set up broadcast address to AA:BB:CC:DD:EE:FF
-uint8_t broadcastAddress[] = {0xAA, 0xBB, 0xCC, 0xDD, 0xEE, 0xFF};
-
-logstruct beeboard;
-
-void setup()
+void remoteSetup()
 {
     pinMode(LED, OUTPUT);           // Set LED as output
     digitalWrite(LED, HIGH);        // Turn LED off
@@ -29,7 +18,7 @@ void setup()
     enableEspNow(broadcastAddress); // Enable ESP-NOW communication
 }
 
-void loop()
+void remoteLoop()
 {
     beeboard.adcValue = readADC(ADC);                                // Read ADC value
     beeboard.voltage = readVoltage(ADC, MAX_VOLTAGE, MAX_ADC_VALUE); // Read voltage
