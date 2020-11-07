@@ -11,9 +11,11 @@
 
 #include <Wire.h>
 #include <Adafruit_BMP280.h> // https://github.com/adafruit/Adafruit_BMP280_Library/archive/master.zip
+#include <HX711.h>           // https://github.com/bogde/HX711/archive/master.zip
 #include "defines.hpp"
 
 Adafruit_BMP280 bmp;
+HX711 hx711;
 
 void setup()
 {
@@ -27,7 +29,13 @@ void setup()
     // Set up BMP280 sensor
     bmp.setSampling(Adafruit_BMP280::MODE_NORMAL);
     bmp.begin();
-    Serial.println("BMP280 sensor enabled");    
+    Serial.println("BMP280 sensor enabled");
+
+    // Set up HX711 module
+    hx711.begin(HX711_DT, HX711_SCK);
+    hx711.set_scale(CALIBRATION_FACTOR);
+    hx711.tare();
+    Serial.println("HX711 module enabled");
 
     // Post-setup message
     Serial.println("Now you can test out serial interface.");
@@ -59,6 +67,10 @@ void loop()
     Serial.print("Temperature: ");
     Serial.print(bmp.readTemperature());
     Serial.println("*C");
+
+    // Read weight
+    Serial.print(hx711.get_units(2));
+        Serial.println(" kg");
 
     // Check battery voltage
     switch (checkBattery())

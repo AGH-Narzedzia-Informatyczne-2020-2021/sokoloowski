@@ -15,6 +15,12 @@
 
 // Built-in LED
 #define LED 2
+
+// HX711 data pin
+#define HX711_DT 12
+
+// HX711 clock pin
+#define HX711_SCK 13
 #pragma endregion
 
 #pragma region ADC constants
