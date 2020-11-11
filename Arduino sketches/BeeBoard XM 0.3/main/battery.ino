@@ -9,16 +9,35 @@
  * 
  */
 
-// Analog pin on ESP8266
+// ADC pin on ESP8266
 #define ADC 0
+
+// Maximum voltage that board can read
+#define MAX_VOLTAGE 12.65f
+
+// Maximum ADC value
+#define MAX_ADC_VALUE 1024
 
 /**
  * @brief Read raw ADC value on specified port
- * @param port number of analog port
+ * 
+ * @return int ADC value
  */
 int readADC()
 {
     int analogValue = 0;
     analogValue = analogRead(ADC);
     return analogValue;
+}
+
+/**
+ * @brief Read voltage basing on maximum voltage
+ * 
+ * @return float Power supply voltage
+ */
+float readVoltage()
+{
+    int adcVal = readADC(port);
+    float voltage = (adcVal * MAX_VOLTAGE) / MAX_ADC_VALUE;
+    return voltage;
 }
