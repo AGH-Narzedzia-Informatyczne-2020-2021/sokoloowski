@@ -9,7 +9,6 @@
  * 
  */
 
-#include "defines.hpp"
 #include "datastruct.hpp"
 
 void setup()
