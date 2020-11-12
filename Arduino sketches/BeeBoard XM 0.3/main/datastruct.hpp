@@ -8,3 +8,13 @@
  * @copyright Copyright (c) 2020
  * 
  */
+
+struct Beeboard {
+    int secretKey;
+    int messageCode;
+    int humidity;
+    float temperatureIn;
+    float temperatureOut;
+    float pressure;
+    float weight;
+}
