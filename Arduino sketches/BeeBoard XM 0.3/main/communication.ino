@@ -12,14 +12,32 @@
 #include <ESP8266WiFi.h>
 #include <espnow.h>
 
+// Set up broadcast address to AA:BB:CC:DD:EE:FF
+uint8_t broadcastAddress[] = {0xAA, 0xBB, 0xCC, 0xDD, 0xEE, 0xFF};
+
 void espNowInit()
 {
+    WiFi.mode(WIFI_OFF);
+    WiFi.mode(WIFI_STA);
     if (isGsmAvailable())
     {
-        // setup ESP-NOW as receiver (slave)
+        wifi_set_macaddr(STATION_IF, mac);
+        if (esp_now_init() != 0)
+        {
+            return;
+        }
+        esp_now_set_self_role(ESP_NOW_ROLE_SLAVE);
+        esp_now_register_recv_cb(OnDataRecv);
     }
     else
     {
-        // setup ESP-NOW as transmitter (master)
-    }    
+        WiFi.setOutputPower(20);
+        if (esp_now_init() != 0)
+        {
+            return;
+        }
+        esp_now_set_self_role(ESP_NOW_ROLE_CONTROLLER);
+        esp_now_register_send_cb(OnDataSent);
+        esp_now_add_peer(broadcastAddress, ESP_NOW_ROLE_SLAVE, 1, NULL, 0);
+    }
 }
