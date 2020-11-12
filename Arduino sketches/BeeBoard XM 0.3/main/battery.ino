@@ -35,8 +35,7 @@
  */
 int readADC()
 {
-    int analogValue = 0;
-    analogValue = analogRead(ADC);
+    int analogValue = analogRead(ADC);
     return analogValue;
 }
 
