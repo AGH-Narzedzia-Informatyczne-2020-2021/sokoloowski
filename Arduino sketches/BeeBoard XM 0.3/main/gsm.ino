@@ -14,6 +14,12 @@
 // I²C address for BeeBoard GSM Module
 #define GSM_ADDRESS 104
 
+/**
+ * @brief Check if BeeBoard GSM module is connected to main board
+ * 
+ * @return true when GSM module is available
+ * @return false when GSM module is unavailable
+ */
 bool isGsmAvailable()
 {
     Wire.beginTransmission(GSM_ADDRESS);
