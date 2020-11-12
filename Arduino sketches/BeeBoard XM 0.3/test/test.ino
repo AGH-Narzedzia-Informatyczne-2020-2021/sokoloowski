@@ -52,25 +52,34 @@ void loop()
     }
 
     // Read ADC value
-    Serial.print("ADC value:   ");
+    Serial.print("ADC value:           ");
     Serial.println(readADC(ADC));
 
     // Read voltage
-    Serial.print("Voltage:     ");
+    Serial.print("Voltage:             ");
     Serial.print(readVoltage(ADC, MAX_VOLTAGE, MAX_ADC_VALUE));
     Serial.println("V");
 
     // Read BMP280 sensor data
-    Serial.print("Pressure:    ");
+    Serial.print("Pressure:            ");
     Serial.print(bmp.readPressure() / 100);
     Serial.println(" hPa");
-    Serial.print("Temperature: ");
+    Serial.print("Temperature outside: ");
     Serial.print(bmp.readTemperature());
     Serial.println("*C");
 
     // Read weight
+    Serial.print("Weight:              ");
     Serial.print(hx711.get_units(2));
-        Serial.println(" kg");
+    Serial.println(" kg");
+
+    // Read DHT22 data
+    Serial.print("Temperature inside:  ");
+    Serial.print("---");
+    Serial.println("*C");
+    Serial.print("Humidity:            ");
+    Serial.print("---");
+    Serial.println("%Rh");
 
     // Check battery voltage
     switch (checkBattery())
