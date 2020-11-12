@@ -18,6 +18,16 @@
 // Maximum ADC value
 #define MAX_ADC_VALUE 1024
 
+// Voltage for "battery low" notification
+#define BATTERY_WARN 9.5f
+
+// Voltage to power off device
+#define BATTERY_EMPTY 9.0f
+
+#define STATUS_BATTERY_GOOD 10
+#define STATUS_BATTERY_LOW 11
+#define STATUS_BATTERY_EMPTY 12
+
 /**
  * @brief Read raw ADC value on specified port
  * 
@@ -40,4 +50,24 @@ float readVoltage()
     int adcVal = readADC(port);
     float voltage = (adcVal * MAX_VOLTAGE) / MAX_ADC_VALUE;
     return voltage;
+}
+
+/**
+ * @brief Check battery voltage and notify about battery state
+ * 
+ */
+int batteryState()
+{
+    if (readVoltage() <= BATTERY_EMPTY)
+    {
+        return STATUS_BATTERY_EMPTY;
+    }
+    else if (readVoltage() <= BATTERY_WARN)
+    {
+        return STATUS_BATTERY_LOW;
+    }
+    else
+    {
+        return STATUS_BATTERY_GOOD;
+    }
 }
