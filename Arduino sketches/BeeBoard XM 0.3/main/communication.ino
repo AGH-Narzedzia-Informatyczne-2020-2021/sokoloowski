@@ -25,7 +25,7 @@ void espNowInit()
     WiFi.mode(WIFI_STA);
     if (isGsmAvailable())
     {
-        wifi_set_macaddr(STATION_IF, mac);
+        wifi_set_macaddr(STATION_IF, broadcastAddress);
         if (esp_now_init() != 0)
         {
             return;
@@ -45,3 +45,4 @@ void espNowInit()
         esp_now_add_peer(broadcastAddress, ESP_NOW_ROLE_SLAVE, 1, NULL, 0);
     }
 }
+
