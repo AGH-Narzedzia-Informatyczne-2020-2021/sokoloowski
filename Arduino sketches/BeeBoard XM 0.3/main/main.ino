@@ -9,8 +9,6 @@
  * 
  */
 
-#include "datastruct.hpp"
-
 void setup()
 {
     // code...
