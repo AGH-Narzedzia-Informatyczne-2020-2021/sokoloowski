@@ -47,3 +47,26 @@ void espNowInit()
     }
 }
 
+/**
+ * @brief This function is triggerred on data recieve event
+ * 
+ */
+void OnDataRecv(uint8_t *mac, uint8_t *incomingData, uint8_t len)
+{
+    memcpy(&measurements, incomingData, sizeof(measurements));
+    // Send recieved data over cellular network here
+}
+
+/**
+ * @brief This function is triggerred on data send event
+ * 
+ */
+void OnDataSent(uint8_t *mac_addr, uint8_t sendStatus)
+{
+    if (sendStatus == 0)
+    {
+        // Post-send instructions
+    }
+    // else
+        // Serial.println("Delivery fail");
+}
