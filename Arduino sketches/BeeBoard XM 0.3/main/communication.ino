@@ -11,3 +11,15 @@
 
 #include <ESP8266WiFi.h>
 #include <espnow.h>
+
+void espNowInit()
+{
+    if (isGsmAvailable())
+    {
+        // setup ESP-NOW as receiver (slave)
+    }
+    else
+    {
+        // setup ESP-NOW as transmitter (master)
+    }    
+}
