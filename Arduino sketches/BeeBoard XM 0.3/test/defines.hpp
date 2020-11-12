@@ -19,6 +19,8 @@
 // HX711 data pin
 #define HX711_DT 12
 
+#define CALIBRATION_FACTOR 21700
+
 // HX711 clock pin
 #define HX711_SCK 13
 #pragma endregion
