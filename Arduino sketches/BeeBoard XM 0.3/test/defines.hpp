@@ -27,7 +27,7 @@
 
 #pragma region ADC constants
 // Maximum voltage
-#define MAX_VOLTAGE 12.65f
+#define MAX_VOLTAGE 12.6f
 
 // Maximum ADC value
 #define MAX_ADC_VALUE 1024
