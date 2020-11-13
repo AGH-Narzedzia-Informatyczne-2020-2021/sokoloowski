@@ -79,3 +79,15 @@ void OnDataSent(uint8_t *mac_addr, uint8_t sendStatus)
     // else
         // Serial.println("Delivery fail");
 }
+
+void sendDataToReciever()
+{
+    measurements.secretKey = SECRET_KEY;
+    measurements.messageCode = status;
+    measurements.weight = weight;
+    measurements.humidity = humidity;
+    measurements.pressure = pressure;
+    measurements.temperatureIn = temperatureIn;
+    measurements.temperatureOut = temperatureOut;
+    esp_now_send(0, (uint8_t *)&measurements, sizeof(measurements));
+}

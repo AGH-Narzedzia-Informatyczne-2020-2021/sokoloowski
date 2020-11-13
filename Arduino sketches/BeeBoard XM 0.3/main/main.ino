@@ -19,5 +19,6 @@ void setup()
 
 void loop()
 {
+    int status = 0;
     // code...
 }
