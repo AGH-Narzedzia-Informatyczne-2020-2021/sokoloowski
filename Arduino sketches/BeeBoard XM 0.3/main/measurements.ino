@@ -11,6 +11,7 @@
 
 #include <Adafruit_BMP280.h> // https://github.com/adafruit/Adafruit_BMP280_Library/archive/master.zip
 #include <HX711.h>           // https://github.com/bogde/HX711/archive/master.zip
+#include <DHT.h>             // https://github.com/markruys/arduino-DHT/archive/master.zip
 
 int pressure,
     humidity;
