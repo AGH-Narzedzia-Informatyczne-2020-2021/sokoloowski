@@ -46,7 +46,7 @@ int readADC()
  */
 float readVoltage()
 {
-    int adcVal = readADC(port);
+    int adcVal = readADC();
     float voltage = (adcVal * MAX_VOLTAGE) / MAX_ADC_VALUE;
     return voltage;
 }
