@@ -13,8 +13,8 @@ struct Beeboard {
     int secretKey;
     int messageCode;
     int humidity;
+    int pressure;
     float temperatureIn;
     float temperatureOut;
-    float pressure;
     float weight;
 }
