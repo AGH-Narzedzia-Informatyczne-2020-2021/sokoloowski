@@ -17,4 +17,4 @@ struct Beeboard {
     float temperatureIn;
     float temperatureOut;
     float weight;
-}
+};
