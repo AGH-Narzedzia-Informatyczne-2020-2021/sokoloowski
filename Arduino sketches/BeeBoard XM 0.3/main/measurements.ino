@@ -43,3 +43,16 @@ void initSensors()
     // Initializing DHT22 sensor
     dht.setup(DHT_DATA);
 }
+
+void makeMeasurements()
+{
+    weight = hx711.get_units(2);
+
+    pressure = bmp.readPressure() / 100;
+    temperatureOut = bmp.readTemperature();
+
+    // Note: this delay can be ommited if board wait longer than 2s
+    delay(dht.getMinimumSamplingPeriod());
+    humidity = dht.getHumidity();
+    temperatureIn = dht.getTemperature();
+}
