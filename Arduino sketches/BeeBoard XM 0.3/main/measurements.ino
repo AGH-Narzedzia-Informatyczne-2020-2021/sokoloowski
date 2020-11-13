@@ -11,3 +11,9 @@
 
 #include <Adafruit_BMP280.h> // https://github.com/adafruit/Adafruit_BMP280_Library/archive/master.zip
 #include <HX711.h>           // https://github.com/bogde/HX711/archive/master.zip
+
+int pressure,
+    humidity;
+float weight,
+    temperature_in,
+    temperature_out;
