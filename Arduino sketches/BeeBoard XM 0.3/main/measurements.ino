@@ -17,15 +17,25 @@
 #define HX711_SCK 13
 #define CALIBRATION_FACTOR 21700
 
+#define DHT_DATA 16
+
 int pressure,
     humidity;
 float weight,
     temperature_in,
     temperature_out;
 
-void initWeight()
+void initSensors()
 {
+    // Initializing weight sensor
     hx711.begin(HX711_DT, HX711_SCK);
     hx711.set_scale(CALIBRATION_FACTOR);
     hx711.tare();
+
+    // Initializing BMP280 sensor
+    bmp.setSampling(Adafruit_BMP280::MODE_NORMAL);
+    bmp.begin();
+
+    // Initializing DHT22 sensor
+    dht.setup(DHT_DATA);
 }
