@@ -68,6 +68,13 @@ void OnDataSent(uint8_t *mac_addr, uint8_t sendStatus)
     if (sendStatus == 0)
     {
         // Post-send instructions
+
+        // Disable device when battery is low
+        // Note: As ESP8266 cannot be disabled programmatically, device will be in deep sleep instead
+        if (batteryState() == STATUS_BATTERY_EMPTY)
+        {
+            ESP.deepSleep(0);
+        }
     }
     // else
         // Serial.println("Delivery fail");
