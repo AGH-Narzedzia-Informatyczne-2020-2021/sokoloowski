@@ -25,6 +25,10 @@ float weight,
     temperatureIn,
     temperatureOut;
 
+HX711 hx711;
+Adafruit_BMP280 bmp;
+DHT dht;
+
 void initSensors()
 {
     // Initializing weight sensor
