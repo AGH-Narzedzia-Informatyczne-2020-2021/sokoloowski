@@ -22,8 +22,8 @@
 int pressure,
     humidity;
 float weight,
-    temperature_in,
-    temperature_out;
+    temperatureIn,
+    temperatureOut;
 
 void initSensors()
 {
