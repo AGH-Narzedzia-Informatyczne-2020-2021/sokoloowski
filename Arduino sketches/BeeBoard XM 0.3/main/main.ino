@@ -9,6 +9,9 @@
  * 
  */
 
+// Unique for every board
+#define SECRET_KEY 1
+
 void setup()
 {
     // code...
