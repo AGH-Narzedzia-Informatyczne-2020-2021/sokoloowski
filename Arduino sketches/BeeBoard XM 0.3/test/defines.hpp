@@ -19,10 +19,14 @@
 // HX711 data pin
 #define HX711_DT 12
 
+// Weight calibration factor
 #define CALIBRATION_FACTOR 21700
 
 // HX711 clock pin
 #define HX711_SCK 13
+
+// DHT22 data pin
+#define DHT_DATA 16
 #pragma endregion
 
 #pragma region ADC constants

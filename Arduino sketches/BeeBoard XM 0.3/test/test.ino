@@ -12,6 +12,7 @@
 #include <Wire.h>
 #include <Adafruit_BMP280.h> // https://github.com/adafruit/Adafruit_BMP280_Library/archive/master.zip
 #include <HX711.h>           // https://github.com/bogde/HX711/archive/master.zip
+#include <DHT.h>             // https://github.com/markruys/arduino-DHT/archive/master.zip
 #include "defines.hpp"
 
 Adafruit_BMP280 bmp;
@@ -36,6 +37,10 @@ void setup()
     hx711.set_scale(CALIBRATION_FACTOR);
     hx711.tare();
     Serial.println("HX711 module enabled");
+
+    // Set up DHT22 sensor
+    dht.setup(DHT_DATA);
+    Serial.println("DHT22 sensor enabled");
 
     // Post-setup message
     Serial.println("Now you can test out serial interface.");
@@ -75,10 +80,10 @@ void loop()
 
     // Read DHT22 data
     Serial.print("Temperature inside:  ");
-    Serial.print("---");
+    Serial.print(dht.getTemperature());
     Serial.println("*C");
     Serial.print("Humidity:            ");
-    Serial.print("---");
+    Serial.print(dht.getHumidity());
     Serial.println("%Rh");
 
     // Check battery voltage
@@ -97,6 +102,6 @@ void loop()
         break;
     }
 
-    Serial.println(); // Empty line
-    delay(1000);      // Wait for one second
+    Serial.println();                      // Empty line
+    delay(dht.getMinimumSamplingPeriod()); // Wait about 2 seconds for DHT22 sensor
 }
